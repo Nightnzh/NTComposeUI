@@ -14,9 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mukesh.MarkDown
-import com.night.ntcomposeui.component.DiceDemo
-import com.night.ntcomposeui.component.MainList
-import com.night.ntcomposeui.component.PreViewAndCodeView
+import com.night.ntcomposeui.component.*
 import com.night.ntcomposeui.ui.theme.NTComposeUITheme
 import java.io.File
 
@@ -46,6 +44,7 @@ fun App() {
         NavHost(navController = navHostController, startDestination = "/main") {
             composable(route = "/main") { MainList(navHostController = navHostController) }
             composable(route = "/dice") { DiceDemo() }
+            composable(route = "/real_dice_roller") { RealDiceRollerDemo() }
         }
     }
 }

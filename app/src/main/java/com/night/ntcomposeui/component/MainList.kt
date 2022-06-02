@@ -19,6 +19,11 @@ fun MainList(navHostController: NavHostController){
                     Text(text = "Dice Demo")
                 }
             }
+            Row(modifier = Modifier.fillMaxWidth()) {
+                TextButton(onClick = { navHostController.navigate("/real_dice_roller") }) {
+                    Text(text = "real_dice_roller")
+                }
+            }
         }
     })
 }

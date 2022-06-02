@@ -11,10 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import com.mukesh.MarkDown
+import com.night.ntcomposeui.modal.Dice
 
-class Dice(val count: Int) {
-    fun roll() = (1..count).random()
-}
 
 @Composable
 fun DiceDemo(){
@@ -34,7 +32,7 @@ fun DiceView() {
     val diceList = remember { mutableStateListOf<Dice>(Dice(4)) }
 
     fun addDice() {
-        val newDice = Dice(inputCount.toInt())
+        val newDice = if(inputCount.toInt() == 0 || inputCount.isEmpty() ) Dice() else Dice(inputCount.toInt())
         diceList.add(newDice)
     }
 
@@ -42,7 +40,7 @@ fun DiceView() {
         Row(verticalAlignment = Alignment.CenterVertically,) {
             OutlinedTextField(
                 value = inputCount, onValueChange = { inputCount = it },
-                label = { Text(text = "Dice count") },
+                label = { Text(text = "Dice side count") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
             Button(onClick = {
@@ -64,7 +62,7 @@ fun DiceView() {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = "Dice(${item.count})")
+                    Text(text = "Dice(${item.numSides})")
                     Text(text = "rolled: (${rollNumber})")
                     Button(onClick = { rollNumber = item.roll() }) {
                         Text(text = "roll")
