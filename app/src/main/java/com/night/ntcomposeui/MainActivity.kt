@@ -15,6 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mukesh.MarkDown
 import com.night.ntcomposeui.component.*
+import com.night.ntcomposeui.config.demoList
 import com.night.ntcomposeui.ui.theme.NTComposeUITheme
 import java.io.File
 
@@ -43,14 +44,16 @@ fun App() {
     Scaffold(topBar = { AppTopBar() }) {
         NavHost(navController = navHostController, startDestination = "/main") {
             composable(route = "/main") { MainList(navHostController = navHostController) }
-            composable(route = "/dice") { DiceDemo() }
-            composable(route = "/real_dice_roller") { RealDiceRollerDemo() }
+
+            demoList.forEachIndexed { index, demoItem ->
+                composable(route = demoItem.routeName){ demoItem.ComposeView() }
+            }
         }
     }
 }
 
 @Composable
-fun AppTopBar(scaffoldState: ScaffoldState? = null) {
+fun AppTopBar() {
 
     TopAppBar(
         title = { Text(text = "NTCompose Demo") },
