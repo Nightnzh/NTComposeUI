@@ -1,43 +1,78 @@
 package com.night.ntcomposeui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.mukesh.MarkDown
+import com.night.ntcomposeui.component.DiceDemo
+import com.night.ntcomposeui.component.MainList
+import com.night.ntcomposeui.component.PreViewAndCodeView
 import com.night.ntcomposeui.ui.theme.NTComposeUITheme
+import java.io.File
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            NTComposeUITheme {
+            NTComposeUITheme() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background,
                 ) {
-                    Greeting("Android")
+                    App()
                 }
             }
         }
     }
 }
 
+
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun App() {
+    val navHostController = rememberNavController()
+    val ctx = LocalContext.current
+    Scaffold(topBar = { AppTopBar() }) {
+        NavHost(navController = navHostController, startDestination = "/main") {
+            composable(route = "/main") { MainList(navHostController = navHostController) }
+            composable(route = "/dice") { DiceDemo() }
+        }
+    }
 }
+
+@Composable
+fun AppTopBar(scaffoldState: ScaffoldState? = null) {
+
+    TopAppBar(
+        title = { Text(text = "NTCompose Demo") },
+    )
+}
+
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     NTComposeUITheme {
-        Greeting("Android")
+        App()
+    }
+}
+
+@Preview
+@Composable
+fun TestView() {
+
+    val context = LocalContext.current
+    NTComposeUITheme {
+        MarkDown(text = context.assets.open("diceMd.md").readBytes().decodeToString())
     }
 }
