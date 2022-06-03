@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun App() {
     val navHostController = rememberNavController()
-    val ctx = LocalContext.current
+
     Scaffold(topBar = { AppTopBar() }) {
         NavHost(navController = navHostController, startDestination = "/main") {
             composable(route = "/main") { MainList(navHostController = navHostController) }
@@ -54,7 +54,6 @@ fun App() {
 
 @Composable
 fun AppTopBar() {
-
     TopAppBar(
         title = { Text(text = "NTCompose Demo") },
     )

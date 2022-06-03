@@ -12,16 +12,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import com.mukesh.MarkDown
 import com.night.ntcomposeui.modal.Dice
+import com.night.ntcomposeui.modal.MyTabView
 
 
 @Composable
 fun DiceDemo(){
     val ctx = LocalContext.current
-    PreViewAndCodeView(PreView = { DiceView() }, CodeView = {
-        MarkDown(
-            text = ctx.assets.open("diceMd.md").readBytes().decodeToString()
+
+    MyTabsView(tabViews = arrayOf(
+        MyTabView(
+            viewTitle = "PreView",
+            ContentView = { DiceView() }
+        ),
+        MyTabView(
+            viewTitle = "Code",
+            ContentView = { MarkDown(text = ctx.assets.open("diceMd.md").readBytes().decodeToString()) }
         )
-    })
+    ))
 }
 
 @Composable

@@ -11,7 +11,7 @@ import androidx.navigation.NavHostController
 import com.night.ntcomposeui.config.demoList
 import com.night.ntcomposeui.modal.DemoItem
 
-
+//Demo列表導覽
 @Composable
 fun MainList(navHostController: NavHostController){
 

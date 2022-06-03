@@ -14,15 +14,23 @@ import androidx.compose.ui.unit.dp
 import com.mukesh.MarkDown
 import com.night.ntcomposeui.R
 import com.night.ntcomposeui.modal.Dice
+import com.night.ntcomposeui.modal.MyTabView
 
 
 @Composable
 fun RealDiceRollerDemo(){
     val ctx = LocalContext.current
 
-    PreViewAndCodeView(PreView = { RealDiceRollerView() }, CodeView = {
-        MarkDown(text = ctx.assets.open("realDice.md").readBytes().decodeToString())
-    })
+    MyTabsView(tabViews = arrayOf(
+        MyTabView(
+           viewTitle = "PreView",
+           ContentView = { RealDiceRollerView() }
+        ),
+        MyTabView(
+            viewTitle = "Code",
+            ContentView = { MarkDown(text = ctx.assets.open("realDice.md").readBytes().decodeToString()) }
+        )
+    ))
 }
 
 
