@@ -59,7 +59,7 @@ fun RealDiceRollerView(){
             .fillMaxSize()
             .padding(8.dp),horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
         Image(modifier = Modifier.fillMaxWidth(0.6f),painter = painterResource(id = diceImageId), contentDescription = "dice image")
-        Button(onClick = { roll() }) {
+        Button(modifier = Modifier.width(80.dp),onClick = { roll() }) {
             Text(text = "roll")
         }
     }

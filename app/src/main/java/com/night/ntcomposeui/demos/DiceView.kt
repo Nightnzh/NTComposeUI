@@ -16,7 +16,7 @@ import com.night.ntcomposeui.modal.MyTabView
 
 
 @Composable
-fun DiceDemo(){
+fun DiceDemo() {
     val ctx = LocalContext.current
 
     MyTabsView(tabViews = arrayOf(
@@ -36,24 +36,25 @@ fun DiceView() {
 
     var inputCount by remember { mutableStateOf<String>("") }
 
-    val diceList = remember { mutableStateListOf<Dice>(Dice(4)) }
+    val diceList = remember { mutableStateListOf<Dice>(Dice(6)) }
 
     fun addDice() {
-        val newDice = if(inputCount.toInt() == 0 || inputCount.isEmpty() ) Dice() else Dice(inputCount.toInt())
+        val newDice = if( inputCount.isEmpty() || inputCount.toInt() == 0 ) Dice() else Dice(inputCount.toInt())
         diceList.add(newDice)
     }
 
     Column() {
-        Row(verticalAlignment = Alignment.CenterVertically,) {
+        Column() {
             OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = inputCount, onValueChange = { inputCount = it },
                 label = { Text(text = "Dice side count") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
-            Button(onClick = {
-                addDice()
-
-            }) {
+            Button(
+                modifier = Modifier.fillMaxWidth(),
+                onClick = { addDice() }
+            ) {
                 Text(text = "Add Dice")
             }
         }
@@ -70,7 +71,7 @@ fun DiceView() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(text = "Dice(${item.numSides})")
-                    Text(text = "rolled: (${rollNumber})")
+                    Text(text = "result: (${rollNumber})")
                     Button(onClick = { rollNumber = item.roll() }) {
                         Text(text = "roll")
                     }
