@@ -34,6 +34,20 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+
 }
 
 
