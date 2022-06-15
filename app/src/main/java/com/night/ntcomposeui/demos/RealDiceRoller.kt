@@ -3,7 +3,6 @@ package com.night.ntcomposeui.component
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
-import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,8 +12,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.mukesh.MarkDown
 import com.night.ntcomposeui.R
-import com.night.ntcomposeui.modal.Dice
-import com.night.ntcomposeui.modal.MyTabView
+import com.night.ntcomposeui.model.Dice
+import com.night.ntcomposeui.model.MyTabView
 
 
 @Composable

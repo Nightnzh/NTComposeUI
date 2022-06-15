@@ -2,7 +2,7 @@ package com.night.ntcomposeui
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.night.ntcomposeui.modal.Dice
+import com.night.ntcomposeui.model.Dice
 
 import org.junit.Test
 import org.junit.runner.RunWith

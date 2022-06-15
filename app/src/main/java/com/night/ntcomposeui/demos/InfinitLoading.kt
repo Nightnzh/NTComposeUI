@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.mukesh.MarkDown
 import com.night.ntcomposeui.component.MyTabsView
-import com.night.ntcomposeui.modal.MyTabView
+import com.night.ntcomposeui.model.MyTabView
 import com.night.ntcomposeui.ui.theme.Shapes
 import io.github.serpro69.kfaker.Faker
 import kotlinx.coroutines.*
