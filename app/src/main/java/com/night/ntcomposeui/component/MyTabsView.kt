@@ -9,7 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.night.ntcomposeui.modal.MyTabView
+import com.night.ntcomposeui.model.MyTabView
 
 
 //@Composable

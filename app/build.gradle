@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+//    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -69,8 +71,45 @@ dependencies {
     implementation("androidx.paging:paging-compose:1.0.0-alpha15")
 
 
+    //viewmodel
+//    val lifecycle_version = "2.5.0-rc01"
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    // ViewModel utilities for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+
+    // Saved state module for ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+
+    // Annotation processor
+    kapt("androidx.lifecycle:lifecycle-compiler:$lifecycle_version")
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
+
+
+    //---------- Room
+
+
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$roomVersion")
+    // optional - Test helpers
+    testImplementation("androidx.room:room-testing:$roomVersion")
+
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$roomVersion")
+
+    //-----------------------------------------------------
+
     //------ Navigation
-    // Kotlin
+
 //    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
 //    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     // Testing Navigation
@@ -90,6 +129,9 @@ dependencies {
 
     //fake data
     implementation "io.github.serpro69:kotlin-faker:1.11.0"
+
+    // TimeApi
+    implementation 'net.danlew:android.joda:2.10.14'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

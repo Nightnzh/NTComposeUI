@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import com.mukesh.MarkDown
-import com.night.ntcomposeui.modal.Dice
-import com.night.ntcomposeui.modal.MyTabView
+import com.night.ntcomposeui.model.Dice
+import com.night.ntcomposeui.model.MyTabView
 
 
 @Composable

@@ -1,4 +1,4 @@
-package com.night.ntcomposeui.modal
+package com.night.ntcomposeui.model
 
 import androidx.compose.runtime.Composable
 
