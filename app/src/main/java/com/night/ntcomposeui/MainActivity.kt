@@ -1,15 +1,20 @@
 package com.night.ntcomposeui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -17,13 +22,21 @@ import com.mukesh.MarkDown
 import com.night.ntcomposeui.component.*
 import com.night.ntcomposeui.config.demoList
 import com.night.ntcomposeui.ui.theme.NTComposeUITheme
-import java.io.File
+
 
 class MainActivity : ComponentActivity() {
+
+    private val mainViewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
-            NTComposeUITheme() {
+
+            val isDarkMode = mainViewModel.isDarkMode.collectAsState(initial = isSystemInDarkTheme())
+
+            NTComposeUITheme(darkTheme = isDarkMode.value) {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -67,9 +80,29 @@ fun App() {
 }
 
 @Composable
-fun AppTopBar() {
+fun AppTopBar(mainViewModel: MainViewModel = viewModel(modelClass = MainViewModel::class.java)) {
+
+    val isDarkMode = mainViewModel.isDarkMode.collectAsState(initial = isSystemInDarkTheme())
+    var isMenuExpanded by remember { mutableStateOf(false)}
+    val scope = rememberCoroutineScope()
+
     TopAppBar(
-        title = { Text(text = "NTCompose Demo") },
+        title = { Text(text = "Compose Demos") },
+        actions = {
+            IconButton(onClick = { isMenuExpanded = true }){
+                Icon(Icons.Default.Menu,"")
+            }
+            DropdownMenu(expanded = isMenuExpanded, onDismissRequest = { isMenuExpanded = false }) {
+                DropdownMenuItem(onClick = { }) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "Dark Mode")
+                        Switch(checked = isDarkMode.value, onCheckedChange = {
+                            mainViewModel.setIsDarkMode(it)
+                        })
+                    }
+                }
+            }
+        }
     )
 }
 
