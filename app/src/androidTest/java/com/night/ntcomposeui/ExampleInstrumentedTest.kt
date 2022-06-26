@@ -2,6 +2,7 @@ package com.night.ntcomposeui
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.night.ntcomposeui.model.Dice
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -20,5 +21,12 @@ class ExampleInstrumentedTest {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.night.ntcomposeui", appContext.packageName)
+    }
+
+    @Test
+    fun DiceTest(){
+        val dice = Dice(100)
+        val rolledResult = dice.roll()
+        assertTrue("The value of rollResult was not between 1 and ${dice.numSides}",rolledResult in 1..dice.numSides)
     }
 }
