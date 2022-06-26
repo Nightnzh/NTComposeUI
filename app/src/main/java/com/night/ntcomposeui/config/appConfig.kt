@@ -7,6 +7,7 @@ import com.night.ntcomposeui.demos.LoadImagesDemo
 import com.night.ntcomposeui.demos.todo.TodosView
 import com.night.ntcomposeui.model.DemoItem
 
+const val IS_DARK_MODE = "is_dark_mode"
 
 val demoList = listOf<DemoItem>(
     DemoItem("Dice", "/dice", { DiceDemo() } , "diceMd.md"),
