@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import com.mukesh.MarkDown
 import com.night.ntcomposeui.model.Dice
 import com.night.ntcomposeui.model.MyTabView
@@ -43,7 +44,7 @@ fun DiceView() {
         diceList.add(newDice)
     }
 
-    Column() {
+    Column(modifier = Modifier.padding(16.dp)) {
         Column() {
             OutlinedTextField(
                 modifier = Modifier.fillMaxWidth(),

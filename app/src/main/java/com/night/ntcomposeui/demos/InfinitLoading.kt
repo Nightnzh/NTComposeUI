@@ -45,9 +45,6 @@ fun InfinityLoadingDemo() {
 }
 
 
-
-
-
 data class FakeLoadingDataModel(
     val name: String,
     val email: String
@@ -190,7 +187,7 @@ fun LazyListState.OnTopScrollToRefresh(
 
 
 suspend fun fakeLoadingData(dataSize: Int = 5): List<FakeLoadingDataModel> {
-    delay((1000..3000).random().toLong())
+    delay((1000..2000).random().toLong())
     val faker = Faker()
     return (1..dataSize).map {
         val name = faker.name.name()

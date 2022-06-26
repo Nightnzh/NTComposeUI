@@ -1,19 +1,18 @@
 package com.night.ntcomposeui.demos.todo
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.night.ntcomposeui.db.dao.TodoModelDao
 import com.night.ntcomposeui.model.TodoModel
+import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
+import java.util.*
 
 class TodosViewModel(private val todoRepository: TodoRepository) : ViewModel() {
 
 
     val todos = todoRepository.todos
-    val completedTodos = todos
 
     fun insertTodo(todo: TodoModel) = viewModelScope.launch {
         todoRepository.insert(todo)
