@@ -1,2 +1,2 @@
 # NTComposeUI
-Andorid app for compose ui.
+Android app for compose ui.
