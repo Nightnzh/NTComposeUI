@@ -1,6 +1,7 @@
 package com.night.ntcomposeui.component
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
@@ -26,6 +27,7 @@ fun MainList(navHostController: NavHostController) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colors.background)
             .padding(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         content = {
@@ -54,7 +56,6 @@ fun MainList(navHostController: NavHostController) {
 
                     Text(text = "${index + 1}. ")
                     Text(text = item.title)
-                    Spacer(modifier = Modifier.weight(1f))
 
                 }
             }

@@ -23,10 +23,36 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.mukesh.MarkDown
 import com.night.ntcomposeui.NTCApplication
+import com.night.ntcomposeui.component.MyTabsView
+import com.night.ntcomposeui.model.MyTabView
 import com.night.ntcomposeui.model.TodoModel
 import com.night.ntcomposeui.ui.theme.Shapes
 import org.joda.time.DateTime
+
+
+
+@Composable
+fun TodosDemo(){
+
+    val ctx = LocalContext.current
+
+    MyTabsView(tabViews = arrayOf(
+        MyTabView(
+            viewTitle = "Preview",
+            ContentView = {
+                TodosView()
+            }
+        ),
+        MyTabView(
+            viewTitle = "Code",
+            ContentView = {
+                MarkDown(text = ctx.assets.open("todoMVVM.md").buffered().readBytes().decodeToString())
+            }
+        )
+    ))
+}
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -109,14 +135,14 @@ fun TodosView(
 
 @Composable
 private fun AddTodoDialog(
-    showAddTodoDialog : Boolean,
-    onDismissRequest : () -> Unit,
+    showAddTodoDialog: Boolean,
+    onDismissRequest: () -> Unit,
     addTodo: (TodoModel) -> Unit
 ) {
 
     var todoTitle by remember { mutableStateOf("") }
 
-    if(showAddTodoDialog)
+    if (showAddTodoDialog)
         Dialog(onDismissRequest = { onDismissRequest(); todoTitle = "" }) {
             Column(
                 modifier = Modifier
@@ -124,8 +150,9 @@ private fun AddTodoDialog(
                     .background(MaterialTheme.colors.background, shape = Shapes.medium)
                     .wrapContentHeight()
                     .padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                Text(text ="Add Todo")
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(text = "Add Todo")
                 OutlinedTextField(
                     value = todoTitle,
                     onValueChange = { todoTitle = it },
@@ -181,13 +208,12 @@ private fun TodoItem(
     if (showAlertToCheckDelete) {
         AlertDialog(
 
-            title = { Text("Delete") },
-            text = { Text("Are you sure to delete this todo?") },
+            title = { Text("Sure to delete this todo?") },
             buttons = {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(8.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
                     TextButton(onClick = {
