@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.night.ntcomposeui.config.IS_DARK_MODE
+import com.night.ntcomposeui.model.Demo
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -27,5 +28,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             it[booleanPreferencesKey(IS_DARK_MODE)] = value
         }
     }
+
+    //demo list
+    val demoList = listOf<Demo>(
+        Demo.Dice,
+        Demo.RealDice,
+        Demo.LoadImages,
+        Demo.InfinityLoading,
+        Demo.TodoMVVM
+    )
+
+
+    //Web demo list
+    val webDemoList = listOf<Demo>(
+        Demo.DateWeb,
+        Demo.ArielWebClone
+    )
+
 
 }
