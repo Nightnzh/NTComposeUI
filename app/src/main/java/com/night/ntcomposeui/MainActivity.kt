@@ -1,8 +1,10 @@
 package com.night.ntcomposeui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
+import android.webkit.URLUtil
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
@@ -100,6 +102,7 @@ fun AppTopBar(
     navHostController: NavHostController
 ) {
 
+    val ctx = LocalContext.current
     val isDarkMode = mainViewModel.isDarkMode.collectAsState(initial = isSystemInDarkTheme())
     var isMenuExpanded by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
@@ -148,7 +151,6 @@ fun LeaningNotionList() {
 @Preview
 @Composable
 fun TestView() {
-
     val context = LocalContext.current
     NTComposeUITheme {
         MarkDown(text = context.assets.open("diceMd.md").readBytes().decodeToString())
