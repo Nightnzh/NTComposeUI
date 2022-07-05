@@ -1,5 +1,6 @@
 package com.night.ntcomposeui.component
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -9,9 +10,14 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
@@ -66,9 +72,10 @@ fun MainList(navHostController: NavHostController, viewModel: MainViewModel) {
                         }) {
                     Text(text = "${index + 1}. ")
                     Text(text = item.title)
+                    Spacer(modifier = Modifier.weight(1f))
+                    Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "")
                 }
             }
-
 
             stickyHeader {
                 Row(
@@ -93,10 +100,43 @@ fun MainList(navHostController: NavHostController, viewModel: MainViewModel) {
                         }) {
                     Text(text = "${index + 1}. ")
                     Text(text = item.title)
+                    Spacer(modifier = Modifier.weight(1f))
+                    Icon(imageVector = Icons.Default.KeyboardArrowRight, contentDescription = "")
                 }
             }
 
 
         })
+}
+
+//feature to add main list items user experience
+@Composable
+fun ExpandedList(
+    modifier: Modifier = Modifier,
+    title: String,
+    childContent: @Composable () -> Unit
+) {
+
+    var showContent by remember { mutableStateOf(false) }
+
+    Column(modifier = modifier.pointerInput(Unit) {
+        detectTapGestures {
+            showContent = !showContent
+        }
+
+    }) {
+        Row {
+            Text(text = title)
+            Spacer(modifier = Modifier.weight(1f))
+            Icon(
+                imageVector = if (showContent) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                ""
+            )
+        }
+        AnimatedVisibility(visible = showContent) {
+            childContent()
+        }
+    }
+
 }
 

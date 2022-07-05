@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.night.ntcomposeui"
-        minSdk 21
+        minSdk 24
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -65,6 +65,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
+
+    //Compose Constraintlayout
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
     //accomplishment
 //    implementation "com.google.accompanist:accompanist-webview:0.24.12-rc"
 
@@ -90,6 +94,8 @@ dependencies {
 
     // Saved state module for ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+//    implementation 'androidx.compose.material3:material3:1.0.0-alpha14'
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
     // Annotation processor
     //noinspection LifecycleAnnotationProcessorWithJava8
@@ -138,6 +144,33 @@ dependencies {
 
     // TimeApi
     implementation 'net.danlew:android.joda:2.10.14'
+
+    //zxing
+    implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    implementation 'com.google.zxing:core:3.4.0'
+
+    //CameraX
+    def camerax_version = "1.2.0-alpha03"
+
+    // CameraX core library using the camera2 implementation
+
+    // The following line is optional, as the core library is included indirectly by camera-camera2
+    implementation("androidx.camera:camera-core:${camerax_version}")
+    implementation("androidx.camera:camera-camera2:${camerax_version}")
+    // If you want to additionally use the CameraX Lifecycle library
+    implementation("androidx.camera:camera-lifecycle:${camerax_version}")
+    // If you want to additionally use the CameraX VideoCapture library
+    implementation("androidx.camera:camera-video:${camerax_version}")
+    // If you want to additionally use the CameraX View class
+    implementation("androidx.camera:camera-view:${camerax_version}")
+    // If you want to additionally add CameraX ML Kit Vision Integration
+    implementation("androidx.camera:camera-mlkit-vision:${camerax_version}")
+    // If you want to additionally use the CameraX Extensions library
+    implementation("androidx.camera:camera-extensions:${camerax_version}")
+
+    // Barcode scanning API
+    implementation 'com.google.mlkit:barcode-scanning:17.0.2'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

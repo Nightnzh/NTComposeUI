@@ -35,7 +35,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         Demo.RealDice,
         Demo.LoadImages,
         Demo.InfinityLoading,
-        Demo.TodoMVVM
+        Demo.TodoMVVM,
+        Demo.QrCodeReader
     )
 
 
