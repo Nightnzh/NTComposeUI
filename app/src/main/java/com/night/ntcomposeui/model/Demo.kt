@@ -7,6 +7,7 @@ import com.night.ntcomposeui.component.RealDiceRollerDemo
 import com.night.ntcomposeui.demos.InfinityLoadingDemo
 import com.night.ntcomposeui.demos.LoadImagesDemo
 import com.night.ntcomposeui.demos.todo.TodosDemo
+import com.night.ntcomposeui.demos.cameraappdemo.CameraAppDemos
 
 
 sealed class Demo(
@@ -15,6 +16,7 @@ sealed class Demo(
     val ComposeView: @Composable () -> Unit,
     val mdFileName: String? = null,  //If have markdown file
 //    val webDemoLink: String? = null
+
 ) {
     object Dice : Demo(
         title = "Dice",
@@ -24,7 +26,7 @@ sealed class Demo(
     )
 
     object RealDice : Demo(
-        "Real Dice",
+        title = "Real Dice",
         routeName = "/real_dice",
         ComposeView = { RealDiceRollerDemo() },
         mdFileName = "realDice.md"
@@ -51,6 +53,13 @@ sealed class Demo(
         mdFileName = "todoMVVM.md"
     )
 
+    object QrCodeReader : Demo(
+        title = "Camera app demos",
+        routeName = "/qrcode-reader",
+        ComposeView = { CameraAppDemos() }
+    )
+
+    //Web
     object DateWeb : Demo(
         title = "Date Web",
         routeName = "/date_web",
@@ -58,7 +67,7 @@ sealed class Demo(
     )
 
     object ArielWebClone : Demo(
-        title = "ArielWebClone",
+        title = "Ariel Web Clone",
         routeName = "/arie_web_clone",
         ComposeView = { MyWebView(mUrl = "https://62243aa50cf0490008b43641--friendly-kowalevski-f7f484.netlify.app/")  },
     )

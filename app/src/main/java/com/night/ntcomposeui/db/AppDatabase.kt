@@ -10,7 +10,7 @@ import com.night.ntcomposeui.model.TodoModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [TodoModel::class], version = 1)
+@Database(entities = [TodoModel::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun todoModelDao(): TodoModelDao
 
